@@ -1,17 +1,28 @@
+import os
 import shutil
 from pathlib import Path
-# A simple python script which copies files from a directory to a single folder
 
-# source of the directory from which files will be copied
-source_path = Path(r"D:\Folder\Folder Name ")
-# the target path where files are copied
-target_path = Path(r"C:\Folder\Folder Name")
-if (source_path.exists() and target_path.exists()):
-    # set the file type here , .mp4 in this case
-    py_files = [p for p in source_path.rglob("*.mp4")]
-    for file in py_files:
-        shutil.copy(file, target_path)
+
+def search_and_move(root_dir, file_extension, destination_dir):
+    for subdir, dirs, files in os.walk(root_dir):
+        for file in files:
+            if file.endswith(file_extension):
+                src_file = os.path.join(subdir, file)
+                dst_file = os.path.join(destination_dir, file)
+                shutil.copy(src_file, dst_file)
+
+
+# source of the directory form which you want to copy files
+src = r'D:\Frond End\Frond End Development'
+# the destination folder to which you want to copy the files to
+des = r'D:\Frond End\Frond End Development'
+root_dir = Path(src)
+# file extension to be copied
+file_extension = '.mp4'
+
+destination_dir = Path(des)
+if (root_dir.exists() and destination_dir.exists()):
+    search_and_move(root_dir, file_extension, destination_dir)
+    print("All files moved successfully!")
 else:
-    print("Please re-check your source and distination paths.")
-
-print("All the files are copied to the distination folder")
+    print("Either source or destination directory does not exits!")
