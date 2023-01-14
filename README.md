@@ -1,5 +1,5 @@
 # File-Copier
-A simple python based file copier which will help you in coping files from a directory to a single folder
+A simple python based file copier which will help you in coping and move files from a directory to a single folder
 REQUIRENMENTS: Make sure you have python installed on your computer
 
 How to run?
